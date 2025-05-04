@@ -1,6 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
@@ -176,8 +179,8 @@ class MiniPlayer extends StatelessWidget {
                                         icon: Obx(() => Icon(
                                               playerController
                                                       .isCurrentSongFav.isFalse
-                                                  ? Icons.favorite_border
-                                                  : Icons.favorite,
+                                                  ? Iconsax.heart_outline
+                                                  : Iconsax.heart_bold,
                                               color: Theme.of(context)
                                                   .textTheme
                                                   .titleMedium!
@@ -217,7 +220,7 @@ class MiniPlayer extends StatelessWidget {
                                           ? null
                                           : playerController.prev,
                                       child: Icon(
-                                        Icons.skip_previous,
+                                        Iconsax.previous_bold,
                                         color: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
@@ -265,7 +268,7 @@ class MiniPlayer extends StatelessWidget {
                                           ? null
                                           : playerController.next,
                                       child: Icon(
-                                        Icons.skip_next,
+                                        Iconsax.next_bold,
                                         color: isLastSong
                                             ? Theme.of(context)
                                                 .textTheme
@@ -342,58 +345,6 @@ class MiniPlayer extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    padding: const EdgeInsets.only(
-                                        right: 20, left: 10),
-                                    height: 20,
-                                    width: (size.width > 860) ? 220 : 180,
-                                    child: Obx(() {
-                                      final volume =
-                                          playerController.volume.value;
-                                      return Row(
-                                        children: [
-                                          SizedBox(
-                                              width: 20,
-                                              child: InkWell(
-                                                onTap: playerController.mute,
-                                                child: Icon(
-                                                  volume == 0
-                                                      ? Icons.volume_off
-                                                      : volume > 0 &&
-                                                              volume < 50
-                                                          ? Icons.volume_down
-                                                          : Icons.volume_up,
-                                                  size: 20,
-                                                ),
-                                              )),
-                                          Expanded(
-                                            child: SliderTheme(
-                                              data: SliderTheme.of(context)
-                                                  .copyWith(
-                                                trackHeight: 2,
-                                                thumbShape:
-                                                    const RoundSliderThumbShape(
-                                                        enabledThumbRadius:
-                                                            6.0),
-                                                overlayShape:
-                                                    const RoundSliderOverlayShape(
-                                                        overlayRadius: 10.0),
-                                              ),
-                                              child: Slider(
-                                                value: playerController
-                                                        .volume.value /
-                                                    100,
-                                                onChanged: (value) {
-                                                  playerController.setVolume(
-                                                      (value * 100).toInt());
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    }),
-                                  ),
                                   SizedBox(
                                     height: 40,
                                     child: Row(
@@ -405,7 +356,7 @@ class MiniPlayer extends StatelessWidget {
                                                 .homeScaffoldkey.currentState!
                                                 .openEndDrawer();
                                           },
-                                          icon: const Icon(Icons.queue_music),
+                                          icon: const Icon(Iconsax.music_outline),
                                         ),
                                         if (size.width > 860)
                                           Padding(
@@ -439,8 +390,8 @@ class MiniPlayer extends StatelessWidget {
                                               },
                                               icon: Icon(playerController
                                                       .isSleepTimerActive.isTrue
-                                                  ? Icons.timer
-                                                  : Icons.timer_outlined),
+                                                  ? Iconsax.timer_1_bold
+                                                  : Iconsax.timer_1_outline),
                                             ),
                                           ),
                                         const SizedBox(
@@ -466,7 +417,7 @@ class MiniPlayer extends StatelessWidget {
                                                   AddToPlaylistController>());
                                             }
                                           },
-                                          icon: const Icon(Icons.playlist_add),
+                                          icon: const Icon(Iconsax.add_square_outline),
                                         ),
                                         if (size.width > 965)
                                           IconButton(
@@ -484,8 +435,7 @@ class MiniPlayer extends StatelessWidget {
                                                 );
                                               }
                                             },
-                                            icon: const Icon(Icons.info,
-                                                size: 22),
+                                            icon: const Icon(Iconsax.info_circle_outline, size: 24),
                                           ),
                                       ],
                                     ),

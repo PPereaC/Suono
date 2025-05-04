@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/services/downloader.dart';
 import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:hive/hive.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 import 'loader.dart';
 import 'snackbar.dart';
@@ -67,7 +68,7 @@ class SongDownloadButton extends StatelessWidget {
                   ? const LoadingIndicator()
                   : IconButton(
                       icon: Icon(
-                        Icons.download,
+                        MingCute.download_line,
                         color: Theme.of(context).textTheme.titleMedium!.color,
                       ),
                       onPressed: () {
