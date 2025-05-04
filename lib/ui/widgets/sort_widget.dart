@@ -152,8 +152,7 @@ class SortWidget extends StatelessWidget {
                       : const Icon(Icons.arrow_upward),
                   iconSize: 20,
                   splashRadius: 20,
-                  visualDensity:
-                      const VisualDensity(horizontal: -3, vertical: -3),
+                  visualDensity: const VisualDensity(horizontal: -3, vertical: -3),
                   onPressed: () {
                     controller.onAscendNDescend(onSort);
                   },
@@ -164,8 +163,7 @@ class SortWidget extends StatelessWidget {
                   icon: const Icon(Icons.search),
                   iconSize: 20,
                   splashRadius: 20,
-                  visualDensity:
-                      const VisualDensity(horizontal: -3, vertical: -3),
+                  visualDensity: const VisualDensity(horizontal: -3, vertical: -3),
                   onPressed: () {
                     onSearchStart!(tag);
                     controller.toggleSearch();
@@ -215,8 +213,7 @@ class SortWidget extends StatelessWidget {
           if (controller.isSearchingEnabled.value)
             Container(
               height: 60,
-              padding:
-                  const EdgeInsets.only(top: 15, bottom: 5, left: 5, right: 20),
+              padding: const EdgeInsets.only(top: 15, bottom: 5, left: 5, right: 5),
               color: Theme.of(context).canvasColor,
               child: ModifiedTextField(
                 controller: controller.textEditingController,
@@ -232,7 +229,7 @@ class SortWidget extends StatelessWidget {
                     filled: true,
                     border: const OutlineInputBorder(),
                     hintText: "search".tr,
-                    suffixIconColor: Theme.of(context).colorScheme.secondary,
+                    suffixIconColor: Theme.of(context).colorScheme.primary,
                     suffixIcon: IconButton(
                       splashRadius: 10,
                       iconSize: 20,

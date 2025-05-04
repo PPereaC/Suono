@@ -127,7 +127,7 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
                 ),
               ).whenComplete(() => Get.delete<SongInfoController>());
             },
-            contentPadding: const EdgeInsets.only(top: 0, left: 5, right: 30),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 0),
             leading: thumbReplacementWithIndex
                 ? SizedBox(
                     width: 27.5,
@@ -160,52 +160,48 @@ class SongListTile extends StatelessWidget with RemoveSongFromPlaylistMixin {
               maxLines: 1,
               style: Theme.of(context).textTheme.titleSmall,
             ),
-            trailing: SizedBox(
-              width: Get.size.width > 800 ? 80 : 40,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (isPlaylistOrAlbum)
-                        Obx(() =>
-                            playerController.currentSong.value?.id == song.id
-                                ? const Icon(
-                                    Icons.equalizer,
-                                  )
-                                : const SizedBox.shrink()),
-                      Text(
-                        song.extras!['length'] ?? "",
-                        style: Theme.of(context).textTheme.titleSmall,
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    if (isPlaylistOrAlbum)
+                      Obx(() =>
+                          playerController.currentSong.value?.id == song.id
+                              ? const Icon(Icons.equalizer, size: 18)
+                              : const SizedBox.shrink()),
+                    Text(
+                      song.extras!['length'] ?? "",
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 8),
+                IconButton(
+                  splashRadius: 20,
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  icon: const Icon(Icons.more_vert, size: 22),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      constraints: const BoxConstraints(maxWidth: 500),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
                       ),
-                    ],
-                  ),
-                  if (GetPlatform.isDesktop)
-                    IconButton(
-                        splashRadius: 20,
-                        onPressed: () {
-                          showModalBottomSheet(
-                            constraints: const BoxConstraints(maxWidth: 500),
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(10.0)),
-                            ),
-                            isScrollControlled: true,
-                            context: playerController
-                                .homeScaffoldkey.currentState!.context,
-                            //constraints: BoxConstraints(maxHeight:Get.height),
-                            barrierColor: Colors.transparent.withAlpha(100),
-                            builder: (context) => SongInfoBottomSheet(
-                              song,
-                              playlist: playlist,
-                            ),
-                          ).whenComplete(
-                              () => Get.delete<SongInfoController>());
-                        },
-                        icon: const Icon(Icons.more_vert))
-                ],
-              ),
+                      isScrollControlled: true,
+                      context: playerController.homeScaffoldkey.currentState!.context,
+                      barrierColor: Colors.transparent.withAlpha(100),
+                      builder: (context) => SongInfoBottomSheet(
+                        song,
+                        playlist: playlist,
+                      ),
+                    ).whenComplete(() => Get.delete<SongInfoController>());
+                  },
+                ),
+              ],
             ),
           ),
         ));
