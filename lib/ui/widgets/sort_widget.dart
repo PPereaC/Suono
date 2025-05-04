@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 import 'additional_operation_dialog.dart';
 import 'modified_text_field.dart';
@@ -148,11 +149,11 @@ class SortWidget extends StatelessWidget {
               Obx(
                 () => IconButton(
                   icon: controller.isAscending.value
-                      ? const Icon(Icons.arrow_downward)
-                      : const Icon(Icons.arrow_upward),
+                      ? const Icon(MingCute.sort_descending_line)
+                      : const Icon(MingCute.sort_ascending_line),
                   iconSize: 20,
                   splashRadius: 20,
-                  visualDensity: const VisualDensity(horizontal: -3, vertical: -3),
+                  visualDensity: const VisualDensity(horizontal: -4, vertical: -3),
                   onPressed: () {
                     controller.onAscendNDescend(onSort);
                   },
@@ -160,19 +161,20 @@ class SortWidget extends StatelessWidget {
               ),
               if (isSearchFeatureRequired)
                 IconButton(
-                  icon: const Icon(Icons.search),
+                  icon: const Icon(Iconsax.search_normal_outline),
                   iconSize: 20,
                   splashRadius: 20,
-                  visualDensity: const VisualDensity(horizontal: -3, vertical: -3),
+                  visualDensity: const VisualDensity(horizontal: -2, vertical: -3),
                   onPressed: () {
                     onSearchStart!(tag);
                     controller.toggleSearch();
                   },
                 ),
+              if (isSearchFeatureRequired) const SizedBox(width: 3),
               if (isAdditionalOperationRequired)
                 PopupMenuButton(
                   child: const Icon(
-                    Icons.more_vert,
+                    Iconsax.setting_4_outline,
                     size: 20,
                   ),
                   // Callback that sets the selected popup menu item.
@@ -213,7 +215,7 @@ class SortWidget extends StatelessWidget {
           if (controller.isSearchingEnabled.value)
             Container(
               height: 60,
-              padding: const EdgeInsets.only(top: 15, bottom: 5, left: 5, right: 5),
+              padding: const EdgeInsets.only(bottom: 5, left: 5, right: 5),
               color: Theme.of(context).canvasColor,
               child: ModifiedTextField(
                 controller: controller.textEditingController,

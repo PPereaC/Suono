@@ -4,6 +4,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '/models/playling_from.dart';
@@ -219,7 +220,7 @@ class PlaylistScreen extends StatelessWidget {
                                                         type: PlaylingFromType.PLAYLIST));
                                               },
                                               icon: Icon(
-                                                Icons.play_circle,
+                                                MingCute.play_fill,
                                                 color: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!
@@ -243,13 +244,14 @@ class PlaylistScreen extends StatelessWidget {
                                                 });
                                               },
                                               icon: Icon(
-                                                Icons.merge,
+                                                MingCute.menu_line,
                                                 color: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!
                                                     .color,
                                               ),
                                             ),
+
                                             // Shuffle button
                                             IconButton(
                                               onPressed: () {
@@ -265,13 +267,14 @@ class PlaylistScreen extends StatelessWidget {
                                                         type: PlaylingFromType.PLAYLIST));
                                               },
                                               icon: Icon(
-                                                Icons.shuffle,
+                                                Iconsax.shuffle_outline,
                                                 color: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!
                                                     .color,
                                               ),
                                             ),
+
                                             // Download button
                                             GetX<Downloader>(builder: (controller) {
                                               final id = playlistController
@@ -316,25 +319,28 @@ class PlaylistScreen extends StatelessWidget {
                                                         ? const Stack(
                                                             children: [
                                                               Center(
-                                                                  child: Icon(
-                                                                Icons.hourglass_bottom,
-                                                                size: 20,
-                                                              )),
+                                                                child: Icon(
+                                                                  Icons.hourglass_bottom,
+                                                                  size: 20,
+                                                                )
+                                                              ),
                                                               Center(
-                                                                  child: LoadingIndicator(
-                                                                dimension: 30,
-                                                              ))
+                                                                child: LoadingIndicator(
+                                                                  dimension: 30,
+                                                                )
+                                                              )
                                                             ],
                                                           )
-                                                        : const Icon(Icons.download),
+                                                        : const Icon(MingCute.download_line),
                                               );
                                             }),
+
                                             if (playlistController.isAddedToLibrary.isTrue)
                                               IconButton(
                                                   onPressed: () {
                                                     playlistController.syncPlaylistSongs();
                                                   },
-                                                  icon: const Icon(Icons.cloud_sync)),
+                                                  icon: const Icon(Iconsax.repeat_outline)),
                                             if (playlistController
                                                 .playlist.value.isPipedPlaylist)
                                               IconButton(
@@ -384,7 +390,7 @@ class PlaylistScreen extends StatelessWidget {
                                                     }
                                                   },
                                                   icon: const Icon(
-                                                    Icons.share,
+                                                    MingCute.share_2_line,
                                                     size: 20,
                                                   )),
                                           ],
